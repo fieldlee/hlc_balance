@@ -1,0 +1,25 @@
+{
+	"listen": ":1080",
+	"servers": [
+		{
+			"name": "01",
+			"domain_port": "192.168.0.247:10000"
+		},
+		{
+			"name": "02",
+			"domain_port": "192.168.0.248:10000"
+		},
+		{
+			"name": "03",
+			"domain_port": "192.168.0.249:10000"
+		},
+		{
+			"name": "04",
+			"domain_port": "192.168.0.250:10000"
+		}
+	],
+	"global": {
+		"name": "hlc_global_server",
+		"domain_port": "192.168.0.251:20000"
+	}
+}
