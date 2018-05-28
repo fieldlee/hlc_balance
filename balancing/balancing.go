@@ -18,7 +18,7 @@ type Server struct {
 type Config struct {
 	Listen	string	`json:"listen"`
 	Servers	[]Server	`json:"servers"`
-	Global	Server	`json:"global"`
+	Global	[]Server	`json:"global"`
 }
 
 var config Config

@@ -2,12 +2,30 @@
 	"listen": ":1080",
 	"servers": [
 		{
-			"name": "01",
-			"domain_port": "127.0.0.1:10000"
+			"name": "01",//宁夏
+			"domain_port": "192.168.0.231:10000"
+		},
+		{
+			"name": "02",//内蒙
+			"domain_port": "192.168.0.232:10000"
+		},
+		{
+			"name": "03",//迪拜
+			"domain_port": "192.168.0.234:10000"
 		}
 	],
-	"global": {
-		"name": "hlc_global_server",
-		"domain_port": "127.0.0.1:20000"
-	}
+	"global": [
+		{
+			"name": "hlc_global_server1",
+			"domain_port": "192.168.0.231:20000"
+		},
+		{
+			"name": "hlc_global_server2",
+			"domain_port": "192.168.0.232:20000"
+		},
+		{
+			"name": "hlc_global_server3",
+			"domain_port": "192.168.0.234:20000"
+		}
+	]
 }

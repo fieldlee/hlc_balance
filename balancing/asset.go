@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"encoding/json"
 	"log"
+	"strconv"
 )
 
 func sessionValidation(header map[string][]string, global *rpc.Client) error {
@@ -60,8 +61,21 @@ func assetFunc(header map[string][]string, body []byte, remoteFunc string, clien
 
 func asset(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-
-	global := ConnectGlobalServer(config.Global.Domain_port)
+	h := (map[string][]string(r.Header))
+	var index int64
+	index = 0
+	org, ok := h["org"]
+	if !ok {
+		w.Write([]byte(`{"code":400,"msg":"failed"}`))
+		return
+	}
+	index , err1 = strconv.ParseInt(org[0], 10, 64)
+	if err1 != nil {
+		log.Println(err1.Error())
+		w.Write([]byte(`{"code":400,"msg":"` + err1.Error() + `"}`))
+		return
+	}
+	global := ConnectGlobalServer(index)
 	defer global.Close()
 
 	switch r.Method {
@@ -79,7 +93,7 @@ func asset(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte(`{"code":"` + err.(*Balancing).Code + `","msg":"` + err.Error() + `"}`))
 			return
 		}
-		client := RPCConn()
+		client := RPCConn(index)
 		defer client.Close()
 
 		var respJSON []byte
