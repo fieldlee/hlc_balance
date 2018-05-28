@@ -69,6 +69,7 @@ func asset(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(`{"code":400,"msg":"failed"}`))
 		return
 	}
+	var err1 error
 	index , err1 = strconv.ParseInt(org[0], 10, 64)
 	if err1 != nil {
 		log.Println(err1.Error())
