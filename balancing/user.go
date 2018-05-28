@@ -38,17 +38,16 @@ func user(w http.ResponseWriter, r *http.Request) {
 	index = 0
 	h := (map[string][]string(r.Header))
 	org, ok := h["org"]
-	if !ok {
-		w.Write([]byte(`{"code":400,"msg":"failed"}`))
-		return
+	if ok {
+		var err1 error
+		index , err1 = strconv.ParseInt(org[0], 10, 64)
+		if err1 != nil {
+			log.Println(err1.Error())
+			w.Write([]byte(`{"code":400,"msg":"` + err1.Error() + `"}`))
+			return
+		}
 	}
-	var err1 error
-	index , err1 = strconv.ParseInt(org[0], 10, 64)
-	if err1 != nil {
-		log.Println(err1.Error())
-		w.Write([]byte(`{"code":400,"msg":"` + err1.Error() + `"}`))
-		return
-	}
+
 	switch r.Method {
 	case "POST":
 		client := RPCConn(index)

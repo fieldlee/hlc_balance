@@ -65,17 +65,16 @@ func asset(w http.ResponseWriter, r *http.Request) {
 	var index int64
 	index = 0
 	org, ok := h["org"]
-	if !ok {
-		w.Write([]byte(`{"code":400,"msg":"failed"}`))
-		return
+	if ok {
+		var err1 error
+		index , err1 = strconv.ParseInt(org[0], 10, 64)
+		if err1 != nil {
+			log.Println(err1.Error())
+			w.Write([]byte(`{"code":400,"msg":"` + err1.Error() + `"}`))
+			return
+		}
 	}
-	var err1 error
-	index , err1 = strconv.ParseInt(org[0], 10, 64)
-	if err1 != nil {
-		log.Println(err1.Error())
-		w.Write([]byte(`{"code":400,"msg":"` + err1.Error() + `"}`))
-		return
-	}
+
 	global := ConnectGlobalServer(index)
 	defer global.Close()
 
