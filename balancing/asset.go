@@ -64,7 +64,7 @@ func asset(w http.ResponseWriter, r *http.Request) {
 	h := (map[string][]string(r.Header))
 	var index int64
 	index = 0
-	org, ok := h["org"]
+	org, ok := h["Org"]
 	if ok {
 		var err1 error
 		index , err1 = strconv.ParseInt(org[0], 10, 64)
