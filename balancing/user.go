@@ -38,7 +38,7 @@ func user(w http.ResponseWriter, r *http.Request) {
 	index = 0
 	h := (map[string][]string(r.Header))
 	log.Println(h)
-	org, ok := h["org"]
+	org, ok := h["Org"]
 	if ok {
 		var err1 error
 		index , err1 = strconv.ParseInt(org[0], 10, 64)
