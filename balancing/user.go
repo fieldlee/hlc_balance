@@ -37,6 +37,7 @@ func user(w http.ResponseWriter, r *http.Request) {
 	var index int64
 	index = 0
 	h := (map[string][]string(r.Header))
+	log.Println(h)
 	org, ok := h["org"]
 	if ok {
 		var err1 error
