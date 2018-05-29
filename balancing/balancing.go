@@ -53,6 +53,8 @@ func Run() {
 	http.HandleFunc("/asset/save", asset)
 	http.HandleFunc("/asset/lost", asset)
 	http.HandleFunc("/asset/fattened", asset)
+	http.HandleFunc("/asset/butcher", asset)
+	http.HandleFunc("/asset/waitbutcher", asset)
 
 	log.Println("Balancing...", config.Listen)
 
