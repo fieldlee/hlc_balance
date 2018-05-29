@@ -79,6 +79,14 @@ func asset(w http.ResponseWriter, r *http.Request) {
 	defer global.Close()
 
 	switch r.Method {
+	case "OPTIONS":
+		w.Header().Set("Content-Type","application/json; charset=UTF-8")
+		w.Header().Set("Access-Control-Allow-Headers","Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization,Org")
+		w.Header().Set("Access-Control-Allow-Origin","*")
+		w.Header().Set("Access-Control-Allow-Headers","content-type")
+		w.Header().Set("Access-Control-Request-Method","GET,HEAD,PUT,PATCH,POST,DELETE")
+		w.Write([]byte("success"))
+		return
 	case "POST":
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
