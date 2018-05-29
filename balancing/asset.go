@@ -114,6 +114,10 @@ func asset(w http.ResponseWriter, r *http.Request) {
 			respJSON, err = assetFunc(map[string][]string(r.Header), body, "Remote.AssetLost", client)
 		case "/asset/fattened":
 			respJSON, err = assetFunc(map[string][]string(r.Header), body, "Remote.AssetFattened", client)
+		case "/asset/butcher":
+			respJSON, err = assetFunc(map[string][]string(r.Header), body, "Remote.AssetButcher", client)
+		case "/asset/waitbutcher":
+			respJSON, err = assetFunc(map[string][]string(r.Header), body, "Remote.AssetWaitButcher", client)
 		default:
 			w.Write([]byte(`{"code":404,"msg":"Page not found"}`))
 			return
