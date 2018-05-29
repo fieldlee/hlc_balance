@@ -87,12 +87,12 @@ func asset(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		err = sessionValidation(map[string][]string(r.Header), global)
-		if err != nil {
-			log.Println(err.Error())
-			w.Write([]byte(`{"code":"` + err.(*Balancing).Code + `","msg":"` + err.Error() + `"}`))
-			return
-		}
+		//err = sessionValidation(map[string][]string(r.Header), global)
+		//if err != nil {
+		//	log.Println(err.Error())
+		//	w.Write([]byte(`{"code":"` + err.(*Balancing).Code + `","msg":"` + err.Error() + `"}`))
+		//	return
+		//}
 		client := RPCConn(index)
 		defer client.Close()
 
