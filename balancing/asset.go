@@ -67,7 +67,6 @@ func asset(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type","application/json; charset=UTF-8")
 	w.Header().Set("Access-Control-Allow-Headers","Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization,Org")
 	w.Header().Set("Access-Control-Allow-Origin","*")
-	w.Header().Set("Access-Control-Allow-Headers","content-type")
 	w.Header().Set("Access-Control-Request-Method","GET,HEAD,PUT,PATCH,POST,DELETE")
 	org, ok := h["Org"]
 	if ok {
