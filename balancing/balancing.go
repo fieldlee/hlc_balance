@@ -55,6 +55,7 @@ func Run() {
 	http.HandleFunc("/asset/fattened", asset)
 	http.HandleFunc("/asset/butcher", asset)
 	http.HandleFunc("/asset/waitbutcher", asset)
+	http.HandleFunc("/asset/query", asset)
 
 	log.Println("Balancing...", config.Listen)
 
