@@ -59,6 +59,26 @@ func assetFunc(header map[string][]string, body []byte, remoteFunc string, clien
 	return respJSON, nil
 }
 
+func assetFuncQuery(header map[string][]string, body []byte, remoteFunc string, client *rpc.Client) ([]byte, error) {
+	var resp map[string]interface{}
+	args := make(map[string]map[string][]string)
+	args["header"] = header
+	args["body"] = make(map[string][]string)
+	args["body"]["b"] = []string{string(body)}
+
+	err := client.Call(remoteFunc, args, &resp)
+	if err != nil {
+		r,_ := json.Marshal([]byte(`{"code":400,"msg":"`+err.Error()+`","data":{}}`))
+		return r, err
+	}
+	respJSON, err := json.Marshal(resp)
+	if err != nil {
+		r,_ := json.Marshal([]byte(`{"code":400,"msg":"`+err.Error()+`","data":{}}`))
+		return r, err
+	}
+	return respJSON, nil
+}
+
 func asset(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	h := (map[string][]string(r.Header))
@@ -126,7 +146,7 @@ func asset(w http.ResponseWriter, r *http.Request) {
 		case "/asset/waitbutcher":
 			respJSON, err = assetFunc(map[string][]string(r.Header), body, "Remote.AssetWaitButcher", client)
 		case "/asset/query":
-			respJSON, err = assetFunc(map[string][]string(r.Header), body, "Remote.AssetQuery", client)
+			respJSON, err = assetFuncQuery(map[string][]string(r.Header), body, "Remote.AssetQuery", client)
 		default:
 			w.Write([]byte(`{"code":404,"msg":"Page not found"}`))
 			return
