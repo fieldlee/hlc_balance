@@ -85,7 +85,7 @@ func asset(w http.ResponseWriter, r *http.Request) {
 	var index int64
 	index = 0
 	w.Header().Set("Content-Type","application/json; charset=UTF-8")
-	w.Header().Set("Access-Control-Allow-Headers","Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization,Org")
+	w.Header().Set("Access-Control-Allow-Headers","Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Username,Authorization,Org")
 	w.Header().Set("Access-Control-Allow-Origin","*")
 	w.Header().Set("Access-Control-Request-Method","GET,HEAD,PUT,PATCH,POST,DELETE")
 	org, ok := h["Org"]
