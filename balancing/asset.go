@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"log"
 	"strconv"
+	"fmt"
 )
 
 func sessionValidation(header map[string][]string, global *rpc.Client) error {
@@ -81,9 +82,17 @@ func assetFuncQuery(header map[string][]string, body []byte, remoteFunc string, 
 
 func asset(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
+	r.ParseForm()
+	//全局语言
+	lan := r.Form.Get("lan")
+	if lan == "" {
+		lan = "en"
+	}
+	fmt.Println("语言：",lan)
 	h := (map[string][]string(r.Header))
 	var index int64
 	index = 0
+	r.Header.Set("Lan",lan)
 	w.Header().Set("Content-Type","application/json; charset=UTF-8")
 	w.Header().Set("Access-Control-Allow-Headers","Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Username,Authorization,Org")
 	w.Header().Set("Access-Control-Allow-Origin","*")
