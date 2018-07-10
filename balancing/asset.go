@@ -90,8 +90,8 @@ func asset(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println("语言：",lan)
 	h := (map[string][]string(r.Header))
-	var index int64
-	index = 0
+	//var index int64
+	//index = 0
 	r.Header.Set("Lan",lan)
 	w.Header().Set("Content-Type","application/json; charset=UTF-8")
 	w.Header().Set("Access-Control-Allow-Headers","Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Username,Authorization,Org")
@@ -100,7 +100,7 @@ func asset(w http.ResponseWriter, r *http.Request) {
 	org, ok := h["Org"]
 	if ok {
 		var err1 error
-		index , err1 = strconv.ParseInt(org[0], 10, 64)
+		_ , err1 = strconv.ParseInt(org[0], 10, 64)
 		if err1 != nil {
 			log.Println(err1.Error())
 			w.Write([]byte(`{"code":400,"msg":"` + err1.Error() + `"}`))

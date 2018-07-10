@@ -34,8 +34,8 @@ func login(body []byte, client *rpc.Client) ([]byte, error) {
 
 func user(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var index int64
-	index = 0
+	//var index int64
+	//index = 0
 	w.Header().Set("Content-Type","application/json; charset=UTF-8")
 	w.Header().Set("Access-Control-Allow-Headers","Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization,Username,Org")
 	w.Header().Set("Access-Control-Allow-Origin","*")
@@ -45,7 +45,7 @@ func user(w http.ResponseWriter, r *http.Request) {
 	org, ok := h["Org"]
 	if ok {
 		var err1 error
-		index , err1 = strconv.ParseInt(org[0], 10, 64)
+		_ , err1 = strconv.ParseInt(org[0], 10, 64)
 		if err1 != nil {
 			log.Println(err1.Error())
 			w.Write([]byte(`{"code":400,"msg":"` + err1.Error() + `"}`))
