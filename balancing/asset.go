@@ -163,7 +163,7 @@ func asset(w http.ResponseWriter, r *http.Request) {
 
 		if err != nil {
 			log.Println(err.Error())
-			w.Write([]byte(`{"code":"` + err.(*Balancing).Code + `","msg":"` + err.Error() + `"}`))
+			w.Write([]byte(`{"code":"500","msg":"` + err.Error() + `"}`))
 			return
 		}
 		w.Write(respJSON)
