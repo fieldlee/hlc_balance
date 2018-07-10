@@ -43,7 +43,7 @@ func Run() {
 	if err != nil {
 		log.Fatalln(err.Error(), "cannot parse the file: config.json")
 	}
-
+	GlobalServer = RPCConn(2)
 	http.HandleFunc("/user/login", user)
 	http.HandleFunc("/asset/register", asset)
 	http.HandleFunc("/asset/querydetail", asset)

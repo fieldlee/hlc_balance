@@ -108,8 +108,8 @@ func asset(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	global := ConnectGlobalServer(index)
-	defer global.Close()
+	//global := ConnectGlobalServer(index)
+	//defer global.Close()
 
 	switch r.Method {
 	case "OPTIONS":
@@ -129,7 +129,7 @@ func asset(w http.ResponseWriter, r *http.Request) {
 		//	w.Write([]byte(`{"code":"` + err.(*Balancing).Code + `","msg":"` + err.Error() + `"}`))
 		//	return
 		//}
-		client := RPCConn(index)
+		client := GlobalServer
 		defer client.Close()
 
 		var respJSON []byte

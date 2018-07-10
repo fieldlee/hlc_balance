@@ -58,7 +58,7 @@ func user(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("success"))
 		return
 	case "POST":
-		client := RPCConn(index)
+		client := GlobalServer
 		defer client.Close()
 
 		body, err := ioutil.ReadAll(r.Body)

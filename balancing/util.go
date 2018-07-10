@@ -33,6 +33,8 @@ func ConnectGlobalServer(index int64) *rpc.Client {
 	return global
 }
 
+var GlobalServer *rpc.Client
+
 //打印内容到文件中
 //tracefile(fmt.Sprintf("receive:%s",v))
 func Tracefile(filename string,str_content string)  {
