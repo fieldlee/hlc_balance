@@ -17,6 +17,7 @@ func RPCConn(index int64) *rpc.Client {
 	client, err := jsonrpc.Dial("tcp", config.Servers[index].Domain_port)
 	if err != nil {
 		log.Println(err.Error())
+		return nil
 	}
 	log.Println(config.Servers[index].Domain_port)
 
