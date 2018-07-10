@@ -58,7 +58,7 @@ func user(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("success"))
 		return
 	case "POST":
-		client := ConnectGlobalServer(index)
+		client := RPCConn(index)
 		if client == nil{
 			w.Write([]byte(`{"code":"500","msg":"连接失败"}`))
 			return

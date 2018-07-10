@@ -129,7 +129,7 @@ func asset(w http.ResponseWriter, r *http.Request) {
 		//	w.Write([]byte(`{"code":"` + err.(*Balancing).Code + `","msg":"` + err.Error() + `"}`))
 		//	return
 		//}
-		client := ConnectGlobalServer(index)
+		client := RPCConn(index)
 		if client == nil{
 			w.Write([]byte(`{"code":"500","msg":"连接失败"}`))
 			return
